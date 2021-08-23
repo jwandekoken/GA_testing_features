@@ -4,8 +4,16 @@ on: push
 jobs:
   node_docker:
     runs-on: ubuntu-latest
-    container:
-      image: node:14-alpine
+    services:
+      app:
+        # our nodejs app image on docker hub
+        image: alialaa17/node-api
+        ports:
+          - 3001:3000
+      mongo:
+        image: mongo
+        ports:
+          - "27017:27017"
     steps:
       - name: Log node version
         run: |
